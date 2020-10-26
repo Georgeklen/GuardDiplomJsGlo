@@ -1,19 +1,17 @@
-import buttonsEventListeners from './modules/ClubS';
+import popup from './modules/ClubS';
 import mainSlider from './modules/Slider'
 import windowScroll from './modules/btnUp';
 import sliderGalery from './modules/PhotoGalery';
-import SliderCarl from './modules/SliderService'
-import burgerMenuShow from './modules/stickingMenu'
-import calc from './modules/calc'
-import sendForm from './modules/sendData'
+import SliderCarl from './modules/SliderService';
+import burgerMenuShow from './modules/stickingMenu';
+import calc from './modules/calc';
+import sendForm from './modules/sendData';
 
-
-
+popup()
 sendForm()
 windowScroll()
 burgerMenuShow()
 calc()
-buttonsEventListeners()
 const newOne = new SliderCarl({
     prev: '#arrow-left',
     next: '#arrow-right',

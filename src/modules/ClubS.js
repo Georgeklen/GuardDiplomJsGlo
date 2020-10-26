@@ -1,66 +1,71 @@
-const buttonsEventListeners = () => {
-    const clubUl = document.getElementById('clubs-list'),
-        body = document.querySelector('body'),
-        openPopUp = document.querySelector('.open-popup'),
-        freeVisitForm = document.getElementById('free_visit_form'),
-        popup = document.querySelectorAll('.popup'),
-        gift = document.getElementById('gift'),
-        callbackForm = document.getElementById('callback_form'),
-        fixedBtn = document.querySelector('.fixed-gift');
-        
-        
-// делегирование чере тело
-    body.addEventListener('click', event => {
-        const target = event.target;
-        const p = target.closest('#choose_club');
-        const callbackPopup = target.closest('.callback-btn-popup');
-        // выбор клуба giftBtn
-        if (target.contains(p)) {
-            if (clubUl.style.display === 'none' || clubUl.style.display === '') {
-                clubUl.style.display = 'block';
-            } else {
-                clubUl.style.display = 'none';
-            }
-        } else {
-            clubUl.style.display = 'none';
-        }
-        // по клику записаться
-        if (target.contains(openPopUp)) {
-            freeVisitForm.style.display = 'block';
-        }
-        // скидка на 30% 
-        if (fixedBtn) {
-            const test = fixedBtn.querySelector('img');
-            if (target.contains(test)) {
-                fixedBtn.style.display = 'none';
-                gift.style.display = 'block';
-            }
+const popup = () => {
+  // получаю элменты
+  const popupLink = document.querySelector('.open-popup'),
+    btnPopupCallBack = document.querySelectorAll('.head-main .callback-btn'),
+    gift = document.querySelector('.fixed-gift'),
+    popup = document.querySelectorAll('.popup');
 
-        }
-        // clubs
-        if (target.contains(callbackPopup)) {
-            callbackForm.style.display = 'block';
-        }
+  const popupOpen = (e) => {
+    e.preventDefault();
+    let target = e.target;
+    let href = target.dataset.popup,
+      popupNow = document.querySelector(href), popupForm = popupNow.querySelector('form'), status = popupNow.querySelector('.status');
+    popupNow.style.display = 'block';
+    popupForm.style.display = 'block';
+    if (status) {
+      status.remove();
+    }
+  };
 
-       
+  const popupClose = (e) => {
+    let target = e.target;
+    if (target.matches('.overlay') || target.matches('.close_icon') || target.matches('.close-btn')) {
+      target.closest('.popup').style.display = 'none';
+    }
+  };
+
+  popupLink.addEventListener('click', popupOpen);
+  // позвонить мне
+  btnPopupCallBack.forEach((item) => {
+    item.addEventListener('click', popupOpen);
+  });
+
+  popup.forEach((item) => {
+    item.addEventListener('click', popupClose);
+  });
+// подарок на скидку
+  if (gift) {
+    gift.addEventListener('click', () => {
+      let href = '#gift',
+        popupNow = document.querySelector(href);
+      popupNow.style.display = 'block';
+      gift.remove();
+    });
+  }
+  const headMenu = () => {
+    // выбери клуб
+    const headMain = document.querySelector('.head-main'),
+        clubsList = document.querySelector('.clubs-list'),
+        clubsListUl = clubsList.querySelector('ul');
       
-
+    const handlerMenu = () => { 
+        if (clubsListUl.style.display !== 'block') {
+            clubsListUl.style.display = 'block';
+        } else {
+            clubsListUl.style.display = 'none';
+        }  
+    };
+  
+    headMain.addEventListener('click', (event) => {
+        let target = event.target;
+        if (target.parentNode === clubsList) {
+            handlerMenu();
+        }
     });
-
-
-    popup.forEach(item => {
-        item.addEventListener('click', event => {
-            let target = event.target;
-            if (target.classList.contains('close_icon') || target.classList.contains('close-btn')) {
-                item.style.display = 'none';
-            } else {
-                target = target.closest('.form-content');
-                if (!target) {
-                    item.style.display = 'none';
-                }
-            }
-        });
-    });
+  
+  };
+  
+  headMenu();
 };
 
-export default buttonsEventListeners;
+export default popup;
