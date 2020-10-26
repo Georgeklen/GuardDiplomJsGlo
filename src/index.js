@@ -7,11 +7,13 @@ import burgerMenuShow from './modules/stickingMenu'
 import calc from './modules/calc'
 import sendForm from './modules/sendData'
 
+
+
 sendForm()
+windowScroll()
 burgerMenuShow()
 calc()
 buttonsEventListeners()
-windowScroll()
 const newOne = new SliderCarl({
     prev: '#arrow-left',
     next: '#arrow-right',
@@ -27,4 +29,3 @@ const newOne = new SliderCarl({
 newOne.init();
 sliderGalery()
 mainSlider()
-// burgerMenu() asdasdsad asdasd

@@ -2,7 +2,7 @@ const sendForm = () => {
   const errorMessage = 'ошибка',
       loadMessage = 'идет отправка...',
       successMessage = 'Ваша заявка отправлена.         Мы свяжемся с вами в ближайшее время',
-      patternPhone = /^\+?[78](\s|-)?\(?\d{3}\)?\s?(-*\d){7}$/;
+      patternPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
   
   document.querySelectorAll('form').forEach((item) => {
       for (let elem of item.elements) {
@@ -12,9 +12,10 @@ const sendForm = () => {
                   elem.value = elem.value.replace(/[^а-яё\s]/ig, '');
               } else if (elem.name === 'name' && elem.placeholder === 'Промокод') {
                   elem.value = elem.value.replace(/[^а-яё\s\d]/ig, '');
-              } else if (elem.name === 'phone') {
+              } 
+              else if (elem.name === 'phone') {
                   elem.value = elem.value.replace(/[^\+\-\(\)\s\d]/ig, '');
-              }
+             }
           });  
       } 
   });
@@ -70,7 +71,7 @@ console.log('asd')
           let confirmDiv = document.createElement('div');
 
           confirmDiv.classList.add('confirm-error');
-          confirmDiv.style.cssText = `font-size: 1rem; color: red;`;
+          confirmDiv.style.cssText = `font-size: 12px; color: red; padding-top: 10px;;`;
 
           if (personalData) {
               confirmDiv.textContent = 'Необходимо подтвердить ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ!';
@@ -231,6 +232,22 @@ console.log('asd')
           body: JSON.stringify(body)
       });
   };
-};               
+
+
+}   
+
+             
     
 export default sendForm;
+
+
+
+
+
+
+
+
+    
+
+
+

@@ -2,7 +2,6 @@
 
 const windowScroll = () => {
     try {
-        
         const totop = document.getElementById('totop'),
             clubs = document.querySelector('#clubs > .wrapper'),
             breadcrumbs = document.querySelector('.breadcrumbs');

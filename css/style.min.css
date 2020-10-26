@@ -1747,7 +1747,8 @@ nav.popup-menu .close-menu-btn img {
     font-size: 11px;
     font-weight: 300;
     line-height: 22px;
-    text-transform: uppercase
+    text-transform: uppercase;
+    width: 150px;
 }
 
 #card_order p.personal-data input[type=checkbox]:not(checked)+label:before {
